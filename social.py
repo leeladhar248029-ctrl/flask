@@ -8,7 +8,6 @@ url = "https://mmgvxtxbciwlqygwayie.supabase.co"
 key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1tZ3Z4dHhiY2l3bHF5Z3dheWllIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDE2MTU1MywiZXhwIjoyMDg5NzM3NTUzfQ.tz-hEF-puFeEiA8ljYj3lwSBadBGlduxnI46QvhCo0w"
 
 supabase: Client = create_client(url, key)
-
 @app.route("/")
 def home():
     return "Supabase Connected!"
