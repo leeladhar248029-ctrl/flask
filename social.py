@@ -60,6 +60,39 @@ def signup():
     inserted = supabase.table("users").insert(record).execute()
 
     return jsonify({"message": "User created successfully!", "user": inserted.data}), 201
+@app.route("/users/login", methods=["POST"])
+def login():
+    data = request.get_json() or {}
+
+    # Validate input
+    if not data.get("email") or not data.get("password"):
+        return jsonify({"error": "Email and password are required"}), 400
+
+    # Fetch user
+    response = supabase.table("users") \
+        .select("*") \
+        .eq("email", data["email"]) \
+        .limit(1) \
+        .execute()
+
+    if not response.data:
+        return jsonify({"error": "User not found"}), 404
+
+    user = response.data[0]
+
+    # Verify password
+    if not check_password_hash(user["password"], data["password"]):
+        return jsonify({"error": "Invalid password"}), 401
+
+    return jsonify({
+        "message": "Login successful",
+        "user": {
+            "id": user["id"],
+            "name": user["name"],
+            "username": user["username"],
+            "email": user["email"]
+        }
+    }), 200
 
 
 if __name__ == "__main__":
