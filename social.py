@@ -173,7 +173,7 @@ def unfollow():
     updated_followers = [id for id in followee_response.data[0].get("followers", []) if id != data["follower_id"]]
     supabase.table("users").update({"followers": updated_followers}).eq("id", data["followee_id"]).execute()
 
-    return jsonify({"message": "Unfollowed successfully!"}), 200
+    return jsonify({"message": "Unfollwed successfully"}), 200
 
 
 
