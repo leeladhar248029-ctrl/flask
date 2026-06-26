@@ -32,7 +32,12 @@ def add_student():
         "age": data["age"],
         "course": data["course"],
         "phone_number": data["phone_number"],
-        "address": data["address"]
+        "address": data["address"],
+        "gender": data["gender"],
+        "current_year": data["current_year"],
+        "roll_number": data["roll_number"],
+        "city": data["city"],
+        "state": data["state"]
     }
 
     response = supabase.table("students").insert(student).execute()
