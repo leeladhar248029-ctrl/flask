@@ -55,7 +55,7 @@ def update_student(id):
         .eq("id", id)
         .execute()
     )
-
+ 
     return jsonify(response.data)
 
 # Delete Student
